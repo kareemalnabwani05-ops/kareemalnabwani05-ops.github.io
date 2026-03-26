@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DashNShine — Premium Auto Detailing | Laval & Montreal</title>
+    <meta name="description" content="Professional-grade auto detailing, paint correction, and ceramic coating in Laval & Montreal. DashNShine restores and preserves your vehicle's finish.">
+
+    <!-- Open Graph & Twitter -->
+    <meta property="og:image" content="images/hero-car-C0yrhaEs.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="images/hero-car-C0yrhaEs.png">
+    <meta property="og:title" content="DashNShine — Premium Auto Detailing | Laval & Montreal">
+    <meta name="twitter:title" content="DashNShine — Premium Auto Detailing | Laval & Montreal">
+    <meta property="og:description" content="Professional-grade auto detailing, paint correction, and ceramic coating in Laval & Montreal. DashNShine restores and preserves your vehicle's finish.">
+    <meta name="twitter:description" content="Professional-grade auto detailing, paint correction, and ceramic coating in Laval & Montreal. DashNShine restores and preserves your vehicle's finish.">
+    <meta property="og:type" content="website">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Header / Logo -->
+    <header>
+        <img src="images/logo-DnL-GQn8.png" alt="DashNShine Logo" id="logo">
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <img src="images/hero-car-C0yrhaEs.png" alt="Hero Car">
+        <div class="hero-text">
+            <h1>Premium Auto Detailing</h1>
+            <p>Serving Laval & Montreal with professional-grade services.</p>
+        </div>
+    </section>
+
+    <!-- Before & After Section -->
+    <section id="before-after">
+        <h2>Before & After</h2>
+        <div class="before-after-container">
+            <div class="before">
+                <img src="images/before-detail-pj13bi4q.png" alt="Before Detail">
+                <p>Before Detailing</p>
+            </div>
+            <div class="after">
+                <img src="images/after-detail-DZfZpC0X.png" alt="After Detail">
+                <p>After Detailing</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- JS -->
+    <script src="js/main.js"></script>
+</body>
+</html>
