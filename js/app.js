@@ -53,7 +53,7 @@ function resetApp() {
   feedback.textContent = '';
   modalFeedback.textContent = '';
   window.location.hash = '#home';
-  window.location.reload();
+  applySection('home');
 }
 
 function routeFromHash() {
@@ -69,11 +69,51 @@ function showModal(service) {
   modalServiceText.textContent = service;
   modal.classList.remove('hidden');
   modalFeedback.textContent = '';
+  trapFocus(modal);
 }
 
 function hideModal() {
   if (!modal) return;
   modal.classList.add('hidden');
+  releaseFocus();
+}
+
+function trapFocus(container) {
+  const focusableElements = container.querySelectorAll(
+    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+  );
+  const firstElement = focusableElements[0];
+  const lastElement = focusableElements[focusableElements.length - 1];
+
+  function handleKeyDown(e) {
+    if (e.key === 'Tab') {
+      if (e.shiftKey) {
+        if (document.activeElement === firstElement) {
+          lastElement.focus();
+          e.preventDefault();
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          firstElement.focus();
+          e.preventDefault();
+        }
+      }
+    } else if (e.key === 'Escape') {
+      hideModal();
+    }
+  }
+
+  container.addEventListener('keydown', handleKeyDown);
+  if (firstElement) firstElement.focus();
+
+  modal._trapHandler = handleKeyDown;
+}
+
+function releaseFocus() {
+  if (modal && modal._trapHandler) {
+    modal.removeEventListener('keydown', modal._trapHandler);
+    delete modal._trapHandler;
+  }
 }
 
 navLinks.forEach(button => {
@@ -140,6 +180,22 @@ if (contactForm) {
     setAppState({ savedForm: Object.fromEntries(data.entries()) });
   });
 }
+
+const observer = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const sectionId = entry.target.id;
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.dataset.target === sectionId);
+        });
+      }
+    });
+  },
+  { threshold: 0.5, rootMargin: '-76px 0px -50% 0px' }
+);
+
+sections.forEach(section => observer.observe(section));
 
 window.addEventListener('hashchange', routeFromHash);
 window.addEventListener('load', () => {
